@@ -1,6 +1,5 @@
-import { Activity, BarChart3, BookOpen, Compass, FlaskConical, LayoutDashboard, Leaf, LineChart, Settings, Wind } from "lucide-react";
-import { useLocation } from "react-router-dom";
-import { NavLink } from "@/components/NavLink";
+import { Activity, BarChart3, BookOpen, Compass, FlaskConical, LayoutDashboard, Leaf, LineChart } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
