@@ -1,6 +1,7 @@
 import { Compass, Filter, Wind } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import logo from "@/assets/sharon-carmel-logo.png";
 
 export function MethodologySection() {
   return (
@@ -16,6 +17,18 @@ export function MethodologySection() {
       <CardContent>
         <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
           <div className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+            <div className="flex items-center gap-3 rounded-lg border border-border bg-background/60 p-3">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-white/95 p-1 ring-1 ring-border dark:bg-white/90">
+                <img src={logo} alt="Sharon-Carmel Municipal Environmental Association" className="h-full w-full object-contain" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Data Source</p>
+                <p className="text-xs font-semibold text-foreground">
+                  Sharon-Carmel Municipal Environmental Association
+                </p>
+                <p className="text-[11px] text-muted-foreground">Official monitoring network · 2017 — 2025</p>
+              </div>
+            </div>
             <p>
               To isolate the atmospheric signal of the <span className="font-semibold text-foreground">Leviathan natural gas rig</span> from
               regional background O<sub>3</sub>, we constrained the dataset to periods of{" "}

@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import logo from "@/assets/sharon-carmel-logo.png";
 
 const DATA_FACTS = [
   { label: "Source", value: "Sharon-Carmel Municipal Env. Assoc." },
