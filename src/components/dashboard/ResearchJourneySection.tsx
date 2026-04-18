@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import logo from "@/assets/sharon-carmel-logo.png";
 
 const DATA_FACTS = [
   { label: "Source", value: "Sharon-Carmel Municipal Env. Assoc." },
@@ -108,7 +109,27 @@ export function ResearchJourneySection() {
             </Badge>
           </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-4">
+          <div className="flex items-center gap-3 rounded-lg border border-accent/30 bg-gradient-accent/10 p-3">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-md bg-white/95 p-1.5 shadow-elev-sm ring-1 ring-border dark:bg-white/90">
+              <img
+                src={logo}
+                alt="Sharon-Carmel Municipal Environmental Association"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="min-w-0">
+              <p className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+                Data Partnership
+              </p>
+              <p className="text-sm font-semibold text-foreground">
+                Sharon-Carmel Municipal Environmental Association
+              </p>
+              <p className="text-[11px] text-muted-foreground">
+                Official environmental monitoring authority · Eastern Mediterranean coast
+              </p>
+            </div>
+          </div>
           <div className="grid gap-2 sm:grid-cols-2">
             {DATA_FACTS.map((f) => (
               <div
