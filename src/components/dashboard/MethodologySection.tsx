@@ -33,7 +33,8 @@ export function MethodologySection() {
               To isolate the atmospheric signal of the <span className="font-semibold text-foreground">Leviathan natural gas rig</span> from
               regional background O<sub>3</sub>, we constrained the dataset to periods of{" "}
               <span className="font-semibold text-foreground">stable westerly winds</span>. This advective regime
-              transports air masses directly from the rig toward the coastal monitoring stations,
+              transports air masses directly from the rig toward the{" "}
+              <span className="font-semibold text-foreground">5 primary coastal monitoring stations</span>,
               maximizing source attribution while minimizing confounding variability.
             </p>
             <p>

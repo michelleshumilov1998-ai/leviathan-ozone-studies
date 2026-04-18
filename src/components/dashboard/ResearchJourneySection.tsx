@@ -17,7 +17,7 @@ const DATA_FACTS = [
   { label: "Source", value: "Sharon-Carmel Municipal Env. Assoc." },
   { label: "Timeline", value: "6-year hourly · 2017 — 2025" },
   { label: "Variables", value: "O₃ · Wind Dir/Speed · Solar Rad. · Temp" },
-  { label: "Stations", value: "5 coastal monitors" },
+  { label: "Stations", value: "5 primary coastal monitoring stations" },
 ];
 
 const PIPELINE: {
@@ -29,7 +29,7 @@ const PIPELINE: {
   {
     icon: Database,
     title: "Data Cleaning",
-    detail: "Outlier removal, unit harmonization, and timestamp alignment across 5 stations.",
+    detail: "Outlier removal, unit harmonization, and timestamp alignment across 5 primary coastal monitoring stations.",
     tag: "Step 1",
   },
   {
