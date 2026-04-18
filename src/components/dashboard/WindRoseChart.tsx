@@ -9,8 +9,10 @@ import {
 } from "recharts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ChartActions } from "./ChartActions";
+import { useStation } from "./StationContext";
 
-const data = [
+const base = [
   { sector: "N", baseline: 18, observed: 22 },
   { sector: "NE", baseline: 14, observed: 17 },
   { sector: "E", baseline: 12, observed: 13 },
@@ -22,6 +24,13 @@ const data = [
 ];
 
 export function WindRoseChart() {
+  const { station } = useStation();
+  const data = base.map((d) => ({
+    sector: d.sector,
+    baseline: Math.round(d.baseline * station.factor),
+    observed: Math.round(d.observed * station.factor),
+  }));
+
   return (
     <Card className="border-border bg-gradient-card shadow-elev-sm">
       <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
@@ -33,9 +42,12 @@ export function WindRoseChart() {
             Mean O₃ (ppb) per 45° wind sector — baseline vs. observed
           </CardDescription>
         </div>
-        <Badge variant="secondary" className="border border-border text-[10px] uppercase tracking-wider">
-          Wind Rose
-        </Badge>
+        <div className="flex items-center gap-2">
+          <Badge variant="secondary" className="border border-border text-[10px] uppercase tracking-wider">
+            Wind Rose
+          </Badge>
+          <ChartActions />
+        </div>
       </CardHeader>
       <CardContent className="pt-2">
         <div className="h-[320px]">
