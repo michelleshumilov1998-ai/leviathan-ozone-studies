@@ -60,7 +60,7 @@ const Index = () => {
                 <span className="font-medium text-foreground">{SECTION_TITLES[section]}</span>
               </div>
 
-              <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
+              <div className="ml-auto flex items-center gap-2 sm:gap-3 lg:gap-4">
                 <div className="relative hidden xl:block">
                   <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
                   <Input
