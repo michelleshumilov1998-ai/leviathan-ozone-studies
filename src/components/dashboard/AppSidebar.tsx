@@ -114,7 +114,7 @@ export function AppSidebar() {
 
       <SidebarFooter className="border-t border-sidebar-border">
         {!collapsed ? (
-          <div className="px-2 py-3">
+          <div className="space-y-2 px-2 py-3">
             <div className="rounded-md bg-sidebar-accent/40 p-3">
               <p className="text-[11px] font-medium text-sidebar-foreground/80">Study Period</p>
               <p className="text-mono-num mt-0.5 text-xs text-sidebar-foreground">2017 — 2025</p>
@@ -123,10 +123,25 @@ export function AppSidebar() {
                 <span className="text-[10px] text-sidebar-foreground/60">Dataset synchronized</span>
               </div>
             </div>
+            <div className="rounded-md border border-sidebar-border/60 bg-sidebar-accent/20 p-3">
+              <p className="text-[10px] uppercase tracking-wider text-sidebar-foreground/50">Developer</p>
+              <p className="font-display mt-0.5 text-sm font-semibold text-sidebar-foreground">
+                Michelle Shumilov
+              </p>
+              <p className="mt-0.5 text-[10px] leading-snug text-sidebar-foreground/65">
+                CS Student · Excellence Scholarship
+              </p>
+            </div>
           </div>
         ) : (
-          <div className="flex justify-center py-3">
+          <div className="flex flex-col items-center gap-2 py-3">
             <span className="h-2 w-2 animate-pulse-soft rounded-full bg-success" />
+            <span
+              title="Michelle Shumilov · CS Student"
+              className="flex h-7 w-7 items-center justify-center rounded-full bg-sidebar-accent/60 text-[10px] font-bold text-sidebar-foreground"
+            >
+              MS
+            </span>
           </div>
         )}
       </SidebarFooter>
