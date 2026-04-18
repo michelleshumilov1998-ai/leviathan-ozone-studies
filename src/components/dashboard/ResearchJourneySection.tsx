@@ -34,8 +34,9 @@ const PIPELINE: {
   },
   {
     icon: Wand2,
-    title: "KNN-Imputation",
-    detail: "Missing values reconstructed from k-nearest meteorological neighbors.",
+    title: "Hybrid Imputation (KNN & Linear Regression)",
+    detail:
+      "Reconstructed missing values using a combination of K-Nearest Neighbors and Linear Regression for maximum data integrity.",
     tag: "Step 2",
   },
   {
