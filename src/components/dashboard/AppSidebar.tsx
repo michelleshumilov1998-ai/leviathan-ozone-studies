@@ -54,7 +54,7 @@ export function AppSidebar() {
           {!collapsed && (
             <div className="flex min-w-0 flex-col leading-tight">
               <span className="font-display text-[13px] font-bold text-sidebar-foreground">
-                Atmos Research
+                Ozone Research Analytics
               </span>
               <span className="truncate text-[9px] text-sidebar-foreground/60">
                 Sharon-Carmel Env. Assoc.
