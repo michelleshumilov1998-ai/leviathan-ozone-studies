@@ -34,6 +34,16 @@ export function MethodologySection() {
               the total record) forms the basis for the impact estimation, predictive modeling, and
               significance testing presented across this dashboard.
             </p>
+
+            <figure className="mt-5 border-l-2 border-accent/60 pl-4">
+              <blockquote className="font-display text-[13px] italic leading-relaxed text-foreground/85">
+                "This research was conducted and finalized alongside active combat reserve service,
+                demonstrating resilience and rigorous time management."
+              </blockquote>
+              <figcaption className="mt-1.5 text-[10px] uppercase tracking-wider text-muted-foreground">
+                — Author's note
+              </figcaption>
+            </figure>
           </div>
 
           <div className="space-y-2.5">
