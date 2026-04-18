@@ -69,7 +69,7 @@ export function ImpactCards() {
       {stats.map((s, i) => (
         <Card
           key={s.label}
-          className="group relative overflow-hidden border-border bg-gradient-card shadow-elev-sm transition-base hover:-translate-y-0.5 hover:shadow-elev-md animate-fade-in-up"
+          className="group relative overflow-hidden border-border bg-gradient-card shadow-elev-sm transition-base hover:-translate-y-1 hover:shadow-glow hover:border-accent/40 animate-fade-in-up"
           style={{ animationDelay: `${i * 70}ms` }}
         >
           <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-accent opacity-0 transition-base group-hover:opacity-100" />

@@ -121,31 +121,31 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="border-t border-sidebar-border py-1.5">
+      <SidebarFooter className="border-t border-sidebar-border py-1">
         {!collapsed ? (
-          <div className="space-y-1.5 px-2 py-1">
-            <div className="flex items-center justify-between rounded-md bg-sidebar-accent/40 px-2 py-1.5">
-              <div className="min-w-0">
-                <p className="text-[9px] uppercase tracking-wider text-sidebar-foreground/60">
+          <div className="space-y-1 px-2 py-0.5">
+            <div className="flex items-center justify-between rounded-md bg-sidebar-accent/40 px-2 py-1">
+              <div className="min-w-0 leading-tight">
+                <p className="text-[8px] uppercase tracking-wider text-sidebar-foreground/60">
                   Study Period
                 </p>
-                <p className="text-mono-num text-[11px] font-semibold text-sidebar-foreground">
+                <p className="text-mono-num text-[10px] font-semibold text-sidebar-foreground">
                   2017 — 2025
                 </p>
               </div>
               <span className="h-1.5 w-1.5 shrink-0 animate-pulse-soft rounded-full bg-success" />
             </div>
-            <div className="rounded-md border border-sidebar-border/60 bg-sidebar-accent/20 px-2 py-1.5">
-              <p className="font-display text-[12px] font-semibold leading-tight text-sidebar-foreground">
+            <div className="rounded-md border border-sidebar-border/60 bg-sidebar-accent/20 px-2 py-1 leading-tight">
+              <p className="font-display text-[11px] font-semibold text-sidebar-foreground">
                 Michelle Shumilov
               </p>
-              <p className="mt-0.5 text-[9px] leading-snug text-sidebar-foreground/65">
-                CS · Excellence Scholarship · GPA 94
+              <p className="text-[8px] text-sidebar-foreground/65">
+                CS · Excellence · GPA 94
               </p>
             </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center gap-1.5 py-2">
+          <div className="flex flex-col items-center gap-1 py-1">
             <span className="h-1.5 w-1.5 animate-pulse-soft rounded-full bg-success" />
             <span
               title="Michelle Shumilov · CS Student"

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Bell, Github, Search } from "lucide-react";
+import { Github, Linkedin, Search } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,7 @@ import { FeatureImportanceChart } from "@/components/dashboard/FeatureImportance
 import { MethodologySection } from "@/components/dashboard/MethodologySection";
 import { AbstractSection } from "@/components/dashboard/AbstractSection";
 import { ResearchJourneySection } from "@/components/dashboard/ResearchJourneySection";
-import { StationProvider } from "@/components/dashboard/StationContext";
+import { StationProvider, useStation } from "@/components/dashboard/StationContext";
 import { StationSelector } from "@/components/dashboard/StationSelector";
 import { ThemeToggle } from "@/components/dashboard/ThemeToggle";
 import { WhitepaperButton } from "@/components/dashboard/WhitepaperButton";
@@ -71,20 +71,36 @@ const Index = () => {
                 <StationSelector />
                 <Button
                   asChild
-                  variant="outline"
-                  size="sm"
-                  className="hidden h-8 gap-1.5 text-xs sm:inline-flex"
+                  variant="ghost"
+                  size="icon"
+                  className="hidden h-8 w-8 text-muted-foreground hover:text-foreground sm:inline-flex"
                 >
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub">
-                    <Github className="h-3.5 w-3.5" />
-                    <span className="hidden lg:inline">View Source Code</span>
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View source code on GitHub"
+                  >
+                    <Github className="h-4 w-4" />
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  variant="ghost"
+                  size="icon"
+                  className="hidden h-8 w-8 text-muted-foreground hover:text-foreground sm:inline-flex"
+                >
+                  <a
+                    href="https://www.linkedin.com/in/michelle-shumilov"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Connect with Michelle Shumilov on LinkedIn"
+                  >
+                    <Linkedin className="h-4 w-4" />
                   </a>
                 </Button>
                 <WhitepaperButton />
                 <ThemeToggle />
-                <Button variant="ghost" size="icon" className="hidden h-8 w-8 text-muted-foreground sm:inline-flex">
-                  <Bell className="h-4 w-4" />
-                </Button>
               </div>
             </header>
 
@@ -115,16 +131,7 @@ const Index = () => {
               )}
 
               {section === "spatial" && (
-                <section className="space-y-4">
-                  <SectionHeader
-                    title="Spatial Sector Analysis"
-                    subtitle="O₃ transport rose for Maayan Zvi & Caesarea — peak westerly impact (240°–300°)."
-                  />
-                  <div className="grid gap-4 sm:gap-6 xl:grid-cols-2">
-                    <WindRoseChart stationOverride="mz" />
-                    <WindRoseChart stationOverride="caesarea" />
-                  </div>
-                </section>
+                <SpatialSection />
               )}
 
               {section === "forecast" && (
@@ -198,6 +205,22 @@ function SectionHeader({ title, subtitle }: { title: string; subtitle: string })
       <h2 className="font-display text-lg font-semibold">{title}</h2>
       <p className="text-xs text-muted-foreground">{subtitle}</p>
     </div>
+  );
+}
+
+function SpatialSection() {
+  const { station } = useStation();
+  return (
+    <section className="space-y-4">
+      <SectionHeader
+        title={`Spatial Sector Analysis — ${station.name}`}
+        subtitle="O₃ transport rose vs. peer station (Maayan Zvi) — peak westerly impact (240°–300°)."
+      />
+      <div className="grid gap-4 sm:gap-6 xl:grid-cols-2">
+        <WindRoseChart />
+        <WindRoseChart stationOverride="mz" />
+      </div>
+    </section>
   );
 }
 
