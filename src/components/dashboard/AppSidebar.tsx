@@ -1,4 +1,4 @@
-import { Activity, BarChart3, Compass, FlaskConical, LayoutDashboard, Leaf, LineChart, Settings, Wind } from "lucide-react";
+import { Activity, BarChart3, BookOpen, Compass, FlaskConical, LayoutDashboard, Leaf, LineChart, Settings, Wind } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { NavLink } from "@/components/NavLink";
 import {
@@ -22,6 +22,7 @@ const nav = [
   { title: "Model Performance", icon: BarChart3, url: "/#models" },
   { title: "Wind Filtering", icon: Wind, url: "/#wind" },
   { title: "Methodology", icon: FlaskConical, url: "/#methodology" },
+  { title: "Abstract", icon: BookOpen, url: "/#abstract" },
 ];
 
 const system = [
