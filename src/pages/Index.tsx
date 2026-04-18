@@ -131,16 +131,7 @@ const Index = () => {
               )}
 
               {section === "spatial" && (
-                <section className="space-y-4">
-                  <SectionHeader
-                    title="Spatial Sector Analysis"
-                    subtitle="O₃ transport rose for Maayan Zvi & Caesarea — peak westerly impact (240°–300°)."
-                  />
-                  <div className="grid gap-4 sm:gap-6 xl:grid-cols-2">
-                    <WindRoseChart stationOverride="mz" />
-                    <WindRoseChart stationOverride="caesarea" />
-                  </div>
-                </section>
+                <SpatialSection />
               )}
 
               {section === "forecast" && (
