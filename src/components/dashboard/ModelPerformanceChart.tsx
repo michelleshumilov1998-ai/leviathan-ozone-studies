@@ -12,22 +12,18 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ChartActions } from "./ChartActions";
-import { useStation } from "./StationContext";
+// (station context intentionally not used — model metrics are global research results)
 
 const base = [
   { model: "Linear Reg.", r2: 0.218, rmse: 9.4, color: "hsl(var(--chart-4))", note: "Baseline" },
-  { model: "Neural Net", r2: 0.290, rmse: 8.4, color: "hsl(var(--chart-5))", note: "Deep Learning" },
+  { model: "Neural Net", r2: 0.291, rmse: 8.4, color: "hsl(var(--chart-5))", note: "Deep Learning" },
   { model: "Random Forest", r2: 0.314, rmse: 8.1, color: "hsl(var(--chart-3))", note: "Tree Ensemble" },
   { model: "XGBoost", r2: 0.361, rmse: 7.6, color: "hsl(var(--chart-2))", note: "Champion" },
 ];
 
 export function ModelPerformanceChart() {
-  const { station } = useStation();
-  const data = base.map((d) => ({
-    ...d,
-    r2: Math.round(d.r2 * (0.94 + station.factor * 0.06) * 1000) / 1000,
-    rmse: Math.round(d.rmse * (1.04 - station.factor * 0.04) * 10) / 10,
-  }));
+  // Authoritative research metrics — kept exact regardless of station selection.
+  const data = base;
 
   return (
     <Card className="border-border bg-gradient-card shadow-elev-sm">
