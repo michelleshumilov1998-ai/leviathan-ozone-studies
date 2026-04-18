@@ -1,24 +1,12 @@
-import { createContext, useContext, useMemo, useState, ReactNode } from "react";
+import { useContext, useMemo, useState, ReactNode } from "react";
+import { STATIONS, StationContext, StationCtx, StationId } from "./station-context-core";
 
-export type StationId = "mz" | "hadera" | "magan";
-export type Station = { id: StationId; name: string; short: string; factor: number };
-
-export const STATIONS: Station[] = [
-  { id: "mz", name: "Ma'ayan Zvi (Primary)", short: "MZ", factor: 1.0 },
-  { id: "hadera", name: "Hadera North", short: "HD", factor: 0.86 },
-  { id: "magan", name: "Ma'agan Michael", short: "MM", factor: 1.12 },
-];
-
-type Ctx = {
-  station: Station;
-  setStation: (id: StationId) => void;
-};
-
-const StationContext = createContext<Ctx | null>(null);
+export { STATIONS } from "./station-context-core";
+export type { Station, StationId } from "./station-context-core";
 
 export function StationProvider({ children }: { children: ReactNode }) {
   const [stationId, setStationId] = useState<StationId>("mz");
-  const value = useMemo<Ctx>(
+  const value = useMemo<StationCtx>(
     () => ({
       station: STATIONS.find((s) => s.id === stationId)!,
       setStation: setStationId,
