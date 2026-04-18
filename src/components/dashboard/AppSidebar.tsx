@@ -134,7 +134,7 @@ export function AppSidebar() {
                 Michelle Shumilov
               </p>
               <p className="mt-0.5 text-[10px] leading-snug text-sidebar-foreground/65">
-                CS Student · Excellence Scholarship
+                CS Student · Excellence Scholarship · GPA 94
               </p>
             </div>
           </div>
