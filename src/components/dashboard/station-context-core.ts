@@ -4,7 +4,7 @@ export type StationId = "mz" | "caesarea" | "nahsholim" | "gada" | "kmaharal";
 export type Station = { id: StationId; name: string; short: string; factor: number };
 
 export const STATIONS: Station[] = [
-  { id: "mz", name: "Maayan Zvi (Primary)", short: "MZ", factor: 1.0 },
+  { id: "mz", name: "Maayan Zvi", short: "MZ", factor: 1.0 },
   { id: "caesarea", name: "Caesarea", short: "CSR", factor: 0.94 },
   { id: "nahsholim", name: "Nahsholim", short: "NHS", factor: 1.08 },
   { id: "gada", name: "Givat Ada", short: "G.ADA", factor: 0.88 },
