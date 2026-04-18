@@ -40,9 +40,9 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon" className="border-r border-sidebar-border">
-      <SidebarHeader className="border-b border-sidebar-border">
-        <div className="flex items-center gap-3 px-2 py-3">
-          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/95 p-1 shadow-elev-sm ring-1 ring-border dark:bg-white/90">
+      <SidebarHeader className="border-b border-sidebar-border py-1.5">
+        <div className="flex items-center gap-2 px-2 py-1">
+          <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/95 p-1 shadow-elev-sm ring-1 ring-border dark:bg-white/90">
             <img
               src={logo}
               alt="Sharon-Carmel Municipal Environmental Association logo"
@@ -53,22 +53,24 @@ export function AppSidebar() {
           </div>
           {!collapsed && (
             <div className="flex min-w-0 flex-col leading-tight">
-              <span className="font-display text-sm font-bold text-sidebar-foreground">Atmos Research</span>
-              <span className="truncate text-[10px] text-sidebar-foreground/60">
-                Sharon-Carmel Municipal Env. Assoc.
+              <span className="font-display text-[13px] font-bold text-sidebar-foreground">
+                Atmos Research
+              </span>
+              <span className="truncate text-[9px] text-sidebar-foreground/60">
+                Sharon-Carmel Env. Assoc.
               </span>
             </div>
           )}
         </div>
       </SidebarHeader>
 
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-sidebar-foreground/50 text-[11px] uppercase tracking-wider">
+      <SidebarContent className="gap-0 overflow-hidden">
+        <SidebarGroup className="py-1">
+          <SidebarGroupLabel className="h-5 px-2 text-[10px] uppercase tracking-wider text-sidebar-foreground/50">
             Analysis
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="gap-0.5">
               {nav.map((item) => {
                 const active = location.pathname === "/" && currentSection === item.section;
                 return (
@@ -77,10 +79,11 @@ export function AppSidebar() {
                       asChild
                       isActive={active}
                       tooltip={item.title}
-                      className="data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
+                      size="sm"
+                      className="h-7 text-[12px] data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
                     >
                       <Link to={item.section === "overview" ? "/" : `/?section=${item.section}`}>
-                        <item.icon className="h-4 w-4" />
+                        <item.icon className="h-3.5 w-3.5" />
                         <span>{item.title}</span>
                       </Link>
                     </SidebarMenuButton>
@@ -91,22 +94,23 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-sidebar-foreground/50 text-[11px] uppercase tracking-wider">
+        <SidebarGroup className="py-1">
+          <SidebarGroupLabel className="h-5 px-2 text-[10px] uppercase tracking-wider text-sidebar-foreground/50">
             System
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="gap-0.5">
               {system.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
                     asChild
                     isActive={location.pathname === item.url}
                     tooltip={item.title}
-                    className="data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
+                    size="sm"
+                    className="h-7 text-[12px] data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
                   >
                     <Link to={item.url}>
-                      <item.icon className="h-4 w-4" />
+                      <item.icon className="h-3.5 w-3.5" />
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
@@ -117,33 +121,35 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="border-t border-sidebar-border">
+      <SidebarFooter className="border-t border-sidebar-border py-1.5">
         {!collapsed ? (
-          <div className="space-y-2 px-2 py-3">
-            <div className="rounded-md bg-sidebar-accent/40 p-3">
-              <p className="text-[11px] font-medium text-sidebar-foreground/80">Study Period</p>
-              <p className="text-mono-num mt-0.5 text-xs text-sidebar-foreground">2017 — 2025</p>
-              <div className="mt-2 flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 animate-pulse-soft rounded-full bg-success" />
-                <span className="text-[10px] text-sidebar-foreground/60">Dataset synchronized</span>
+          <div className="space-y-1.5 px-2 py-1">
+            <div className="flex items-center justify-between rounded-md bg-sidebar-accent/40 px-2 py-1.5">
+              <div className="min-w-0">
+                <p className="text-[9px] uppercase tracking-wider text-sidebar-foreground/60">
+                  Study Period
+                </p>
+                <p className="text-mono-num text-[11px] font-semibold text-sidebar-foreground">
+                  2017 — 2025
+                </p>
               </div>
+              <span className="h-1.5 w-1.5 shrink-0 animate-pulse-soft rounded-full bg-success" />
             </div>
-            <div className="rounded-md border border-sidebar-border/60 bg-sidebar-accent/20 p-3">
-              <p className="text-[10px] uppercase tracking-wider text-sidebar-foreground/50">Developer</p>
-              <p className="font-display mt-0.5 text-sm font-semibold text-sidebar-foreground">
+            <div className="rounded-md border border-sidebar-border/60 bg-sidebar-accent/20 px-2 py-1.5">
+              <p className="font-display text-[12px] font-semibold leading-tight text-sidebar-foreground">
                 Michelle Shumilov
               </p>
-              <p className="mt-0.5 text-[10px] leading-snug text-sidebar-foreground/65">
-                CS Student · Excellence Scholarship · GPA 94
+              <p className="mt-0.5 text-[9px] leading-snug text-sidebar-foreground/65">
+                CS · Excellence Scholarship · GPA 94
               </p>
             </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center gap-2 py-3">
-            <span className="h-2 w-2 animate-pulse-soft rounded-full bg-success" />
+          <div className="flex flex-col items-center gap-1.5 py-2">
+            <span className="h-1.5 w-1.5 animate-pulse-soft rounded-full bg-success" />
             <span
               title="Michelle Shumilov · CS Student"
-              className="flex h-7 w-7 items-center justify-center rounded-full bg-sidebar-accent/60 text-[10px] font-bold text-sidebar-foreground"
+              className="flex h-6 w-6 items-center justify-center rounded-full bg-sidebar-accent/60 text-[9px] font-bold text-sidebar-foreground"
             >
               MS
             </span>
