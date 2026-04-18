@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Bell, FlaskConical, Github, Search } from "lucide-react";
+import { Bell, Github, Search } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
