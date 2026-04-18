@@ -15,9 +15,10 @@ import { ChartActions } from "./ChartActions";
 import { useStation } from "./StationContext";
 
 const base = [
-  { model: "Linear Reg.", r2: 0.218, rmse: 9.4, color: "hsl(var(--chart-4))" },
-  { model: "Random Forest", r2: 0.314, rmse: 8.1, color: "hsl(var(--chart-3))" },
-  { model: "XGBoost", r2: 0.361, rmse: 7.6, color: "hsl(var(--chart-2))" },
+  { model: "Linear Reg.", r2: 0.218, rmse: 9.4, color: "hsl(var(--chart-4))", note: "Baseline" },
+  { model: "Neural Net", r2: 0.290, rmse: 8.4, color: "hsl(var(--chart-5))", note: "Deep Learning" },
+  { model: "Random Forest", r2: 0.314, rmse: 8.1, color: "hsl(var(--chart-3))", note: "Tree Ensemble" },
+  { model: "XGBoost", r2: 0.361, rmse: 7.6, color: "hsl(var(--chart-2))", note: "Champion" },
 ];
 
 export function ModelPerformanceChart() {
@@ -34,7 +35,7 @@ export function ModelPerformanceChart() {
         <div>
           <CardTitle className="font-display text-base">Model Performance Comparison</CardTitle>
           <CardDescription className="mt-1 text-xs">
-            Out-of-sample R² across three predictive architectures
+            Performance comparison across Linear, Tree-based, and Deep Learning architectures.
           </CardDescription>
         </div>
         <div className="flex items-center gap-2">
@@ -86,10 +87,13 @@ export function ModelPerformanceChart() {
           </ResponsiveContainer>
         </div>
 
-        <div className="mt-3 grid grid-cols-3 gap-2 border-t border-border pt-3 text-[11px]">
+        <div className="mt-3 grid grid-cols-2 gap-2 border-t border-border pt-3 text-[11px] sm:grid-cols-4">
           {data.map((d) => (
             <div key={d.model} className="rounded-md bg-muted/40 px-2 py-1.5">
-              <p className="font-medium text-foreground">{d.model}</p>
+              <div className="flex items-center justify-between gap-1">
+                <p className="font-medium text-foreground">{d.model}</p>
+                <span className="text-[9px] uppercase tracking-wider text-muted-foreground">{d.note}</span>
+              </div>
               <p className="text-mono-num text-muted-foreground">RMSE {d.rmse} ppb</p>
             </div>
           ))}

@@ -47,9 +47,21 @@ export function MethodologySection() {
               the total record) forms the basis for the impact estimation, predictive modeling, and
               significance testing presented across this dashboard.
             </p>
+            <p>
+              Both <span className="font-semibold text-foreground">linear and non-linear models</span> were
+              tested — Linear Regression, Neural Networks, Random Forest, and XGBoost — to capture the
+              complex, non-additive chemistry of tropospheric ozone formation under varying meteorological
+              regimes.
+            </p>
 
-            <figure className="mt-5 space-y-3 border-l-2 border-accent/60 pl-4">
-              <blockquote className="font-display text-[13px] italic leading-relaxed text-foreground/85">
+            <figure className="mt-5 space-y-3 rounded-lg border border-accent/40 bg-accent/5 p-4">
+              <div className="flex items-center gap-2">
+                <span className="inline-flex h-2 w-2 animate-pulse-soft rounded-full bg-accent" />
+                <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-accent">
+                  Combat Reserve Service · Author's Note
+                </span>
+              </div>
+              <blockquote className="font-display text-[13px] italic leading-relaxed text-foreground/90">
                 "This research was conducted and finalized alongside active combat reserve service,
                 demonstrating resilience and rigorous time management."
               </blockquote>
@@ -58,9 +70,6 @@ export function MethodologySection() {
                 CS Student at Ruppin Academic Center
                 <span className="text-muted-foreground"> (Excellence Scholarship · Year 1 GPA: 94)</span>.
               </p>
-              <figcaption className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                — Author's note
-              </figcaption>
             </figure>
           </div>
 
