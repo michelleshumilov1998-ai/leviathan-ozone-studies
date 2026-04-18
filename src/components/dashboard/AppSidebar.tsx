@@ -1,5 +1,5 @@
 import { Activity, BarChart3, BookOpen, Compass, FlaskConical, LayoutDashboard, Leaf, LineChart } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -14,31 +14,27 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-const nav = [
-  { title: "Overview", icon: LayoutDashboard, url: "/" },
-  { title: "Spatial Analysis", icon: Compass, url: "/#spatial" },
-  { title: "Forecast vs Actual", icon: LineChart, url: "/#forecast" },
-  { title: "Model Performance", icon: BarChart3, url: "/#models" },
-  { title: "Wind Filtering", icon: Wind, url: "/#wind" },
-  { title: "Methodology", icon: FlaskConical, url: "/#methodology" },
-  { title: "Abstract", icon: BookOpen, url: "/#abstract" },
+export type SectionId = "overview" | "spatial" | "forecast" | "models" | "methodology" | "abstract";
+
+const nav: { title: string; icon: typeof LayoutDashboard; section: SectionId }[] = [
+  { title: "Overview", icon: LayoutDashboard, section: "overview" },
+  { title: "Spatial Analysis", icon: Compass, section: "spatial" },
+  { title: "Forecast vs Actual", icon: LineChart, section: "forecast" },
+  { title: "Model Performance", icon: BarChart3, section: "models" },
+  { title: "Methodology", icon: FlaskConical, section: "methodology" },
+  { title: "Abstract", icon: BookOpen, section: "abstract" },
 ];
 
 const system = [
   { title: "Live Monitor", icon: Activity, url: "/live-monitor" },
-  { title: "Settings", icon: Settings, url: "/#settings" },
 ];
 
 export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
-
-  const isActive = (url: string) => {
-    const path = url.split("#")[0] || "/";
-    if (path === "/" && url.includes("#")) return false;
-    return location.pathname === path;
-  };
+  const [searchParams] = useSearchParams();
+  const currentSection = (searchParams.get("section") as SectionId) || "overview";
 
   return (
     <Sidebar collapsible="icon" className="border-r border-sidebar-border">
@@ -68,21 +64,24 @@ export function AppSidebar() {
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {nav.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={isActive(item.url)}
-                    tooltip={item.title}
-                    className="data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
-                  >
-                    <NavLink to={item.url}>
-                      <item.icon className="h-4 w-4" />
-                      <span>{item.title}</span>
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {nav.map((item) => {
+                const active = location.pathname === "/" && currentSection === item.section;
+                return (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={active}
+                      tooltip={item.title}
+                      className="data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
+                    >
+                      <Link to={item.section === "overview" ? "/" : `/?section=${item.section}`}>
+                        <item.icon className="h-4 w-4" />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -97,14 +96,14 @@ export function AppSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
                     asChild
-                    isActive={isActive(item.url)}
+                    isActive={location.pathname === item.url}
                     tooltip={item.title}
                     className="data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
                   >
-                    <NavLink to={item.url}>
+                    <Link to={item.url}>
                       <item.icon className="h-4 w-4" />
                       <span>{item.title}</span>
-                    </NavLink>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -118,7 +117,7 @@ export function AppSidebar() {
           <div className="px-2 py-3">
             <div className="rounded-md bg-sidebar-accent/40 p-3">
               <p className="text-[11px] font-medium text-sidebar-foreground/80">Study Period</p>
-              <p className="text-mono-num mt-0.5 text-xs text-sidebar-foreground">2019 — 2024</p>
+              <p className="text-mono-num mt-0.5 text-xs text-sidebar-foreground">2017 — 2025</p>
               <div className="mt-2 flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 animate-pulse-soft rounded-full bg-success" />
                 <span className="text-[10px] text-sidebar-foreground/60">Dataset synchronized</span>
