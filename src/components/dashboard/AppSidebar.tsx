@@ -1,4 +1,4 @@
-import { Activity, BarChart3, BookOpen, Compass, FlaskConical, LayoutDashboard, Leaf, LineChart } from "lucide-react";
+import { Activity, BarChart3, BookOpen, Compass, FlaskConical, LayoutDashboard, Leaf, LineChart, Route } from "lucide-react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import {
   Sidebar,
@@ -14,7 +14,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-export type SectionId = "overview" | "spatial" | "forecast" | "models" | "methodology" | "abstract";
+export type SectionId = "overview" | "spatial" | "forecast" | "models" | "methodology" | "abstract" | "journey";
 
 const nav: { title: string; icon: typeof LayoutDashboard; section: SectionId }[] = [
   { title: "Overview", icon: LayoutDashboard, section: "overview" },
@@ -22,6 +22,7 @@ const nav: { title: string; icon: typeof LayoutDashboard; section: SectionId }[]
   { title: "Forecast vs Actual", icon: LineChart, section: "forecast" },
   { title: "Model Performance", icon: BarChart3, section: "models" },
   { title: "Methodology", icon: FlaskConical, section: "methodology" },
+  { title: "Research Journey", icon: Route, section: "journey" },
   { title: "Abstract", icon: BookOpen, section: "abstract" },
 ];
 
