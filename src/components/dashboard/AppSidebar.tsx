@@ -1,5 +1,6 @@
-import { Activity, BarChart3, BookOpen, Compass, FlaskConical, LayoutDashboard, Leaf, LineChart, Route } from "lucide-react";
+import { Activity, BarChart3, BookOpen, Compass, FlaskConical, LayoutDashboard, LineChart, Route } from "lucide-react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
+import logo from "@/assets/sharon-carmel-logo.png";
 import {
   Sidebar,
   SidebarContent,
@@ -41,11 +42,14 @@ export function AppSidebar() {
     <Sidebar collapsible="icon" className="border-r border-sidebar-border">
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center gap-3 px-2 py-3">
-          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-accent shadow-glow">
-            <Leaf className="h-5 w-5 text-accent-foreground" strokeWidth={2.25} />
-            <span className="absolute -bottom-0.5 -right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-sidebar text-[8px] font-bold text-sidebar-foreground ring-2 ring-sidebar">
-              SC
-            </span>
+          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/95 p-1 shadow-elev-sm ring-1 ring-border dark:bg-white/90">
+            <img
+              src={logo}
+              alt="Sharon-Carmel Municipal Environmental Association logo"
+              className="h-full w-full object-contain"
+              loading="eager"
+              decoding="async"
+            />
           </div>
           {!collapsed && (
             <div className="flex min-w-0 flex-col leading-tight">
