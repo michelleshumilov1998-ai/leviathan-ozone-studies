@@ -1,9 +1,10 @@
 import { Bell, FlaskConical, Github, Search } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { AppSidebar } from "@/components/dashboard/AppSidebar";
+import { AppSidebar, type SectionId } from "@/components/dashboard/AppSidebar";
 import { HeroHeader } from "@/components/dashboard/HeroHeader";
 import { ImpactCards } from "@/components/dashboard/ImpactCards";
 import { WindRoseChart } from "@/components/dashboard/WindRoseChart";
@@ -17,7 +18,19 @@ import { StationSelector } from "@/components/dashboard/StationSelector";
 import { ThemeToggle } from "@/components/dashboard/ThemeToggle";
 import { WhitepaperButton } from "@/components/dashboard/WhitepaperButton";
 
+const SECTION_TITLES: Record<SectionId, string> = {
+  overview: "Overview",
+  spatial: "Spatial Analysis",
+  forecast: "Forecast vs Actual",
+  models: "Model Performance",
+  methodology: "Methodology",
+  abstract: "Scientific Abstract",
+};
+
 const Index = () => {
+  const [searchParams] = useSearchParams();
+  const section = (searchParams.get("section") as SectionId) || "overview";
+
   return (
     <StationProvider>
       <SidebarProvider>
@@ -32,7 +45,9 @@ const Index = () => {
               <div className="hidden items-center gap-1.5 text-xs text-muted-foreground md:flex">
                 <span>Studies</span>
                 <span className="text-muted-foreground/40">/</span>
-                <span className="font-medium text-foreground">Ozone Impact · Leviathan</span>
+                <span>Ozone Impact · Leviathan</span>
+                <span className="text-muted-foreground/40">/</span>
+                <span className="font-medium text-foreground">{SECTION_TITLES[section]}</span>
               </div>
 
               <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
@@ -64,8 +79,9 @@ const Index = () => {
             </header>
 
             <main className="flex-1 space-y-6 p-4 sm:p-6 lg:p-8">
-              <HeroHeader />
+              {section === "overview" && <HeroHeader />}
 
+              {/* Global headline summary visible on every section */}
               <section aria-labelledby="impact-heading" className="space-y-3">
                 <div className="flex items-end justify-between">
                   <div>
@@ -80,21 +96,76 @@ const Index = () => {
                 <ImpactCards />
               </section>
 
-              <section className="grid gap-4 sm:gap-6 xl:grid-cols-2">
-                <WindRoseChart />
-                <ForecastChart />
-              </section>
+              {section === "overview" && (
+                <>
+                  <section className="grid gap-4 sm:gap-6 xl:grid-cols-2">
+                    <WindRoseChart />
+                    <ForecastChart />
+                  </section>
+                  <section className="grid gap-4 sm:gap-6 lg:grid-cols-[1fr_1.4fr]">
+                    <ModelPerformanceChart />
+                    <FeatureImportanceChart />
+                  </section>
+                  <section><MethodologySection /></section>
+                  <AbstractSection />
+                </>
+              )}
 
-              <section className="grid gap-4 sm:gap-6 lg:grid-cols-[1fr_1.4fr]">
-                <ModelPerformanceChart />
-                <FeatureImportanceChart />
-              </section>
+              {section === "spatial" && (
+                <section className="space-y-4">
+                  <SectionHeader
+                    title="Spatial Sector Analysis"
+                    subtitle="O₃ transport rose for Maayan Zvi & Caesarea — peak westerly impact (240°–300°)."
+                  />
+                  <div className="grid gap-4 sm:gap-6 xl:grid-cols-2">
+                    <WindRoseChart stationOverride="mz" />
+                    <WindRoseChart stationOverride="caesarea" />
+                  </div>
+                </section>
+              )}
 
-              <section>
-                <MethodologySection />
-              </section>
+              {section === "forecast" && (
+                <section className="space-y-4">
+                  <SectionHeader
+                    title="Forecast vs Actual Observations"
+                    subtitle="24-hour diurnal cycle — XGBoost predictions tracking actuals (19% RMSE improvement)."
+                  />
+                  <ForecastChart />
+                </section>
+              )}
 
-              <AbstractSection />
+              {section === "models" && (
+                <section className="space-y-4">
+                  <SectionHeader
+                    title="Model Performance Comparison"
+                    subtitle="Out-of-sample R² across Linear Regression, Random Forest, and XGBoost."
+                  />
+                  <div className="grid gap-4 sm:gap-6 lg:grid-cols-[1fr_1.4fr]">
+                    <ModelPerformanceChart />
+                    <FeatureImportanceChart />
+                  </div>
+                </section>
+              )}
+
+              {section === "methodology" && (
+                <section className="space-y-4">
+                  <SectionHeader
+                    title="Methodology"
+                    subtitle="KNN-Imputation pipeline and stable westerly wind filtering."
+                  />
+                  <MethodologySection />
+                </section>
+              )}
+
+              {section === "abstract" && (
+                <section className="space-y-4">
+                  <SectionHeader
+                    title="Scientific Abstract"
+                    subtitle="Attributable impact of offshore natural gas operations on coastal tropospheric O₃."
+                  />
+                  <AbstractSection />
+                </section>
+              )}
 
               {/* Methodology note */}
               <div className="flex items-start gap-2.5 rounded-lg border border-dashed border-border bg-muted/30 px-4 py-3">
@@ -107,7 +178,7 @@ const Index = () => {
 
               <footer className="flex flex-wrap items-center justify-between gap-2 border-t border-border pt-4 text-[11px] text-muted-foreground">
                 <span>© 2026 Sharon-Carmel Municipal Environmental Association · Atmos Research Group</span>
-                <span className="text-mono-num">Build v2.4.1 · Data refreshed 2026-04-17 06:00 UTC</span>
+                <span className="text-mono-num">Build v2.4.1 · Study Period 2017 — 2025</span>
               </footer>
             </main>
           </div>
@@ -116,5 +187,14 @@ const Index = () => {
     </StationProvider>
   );
 };
+
+function SectionHeader({ title, subtitle }: { title: string; subtitle: string }) {
+  return (
+    <div>
+      <h2 className="font-display text-lg font-semibold">{title}</h2>
+      <p className="text-xs text-muted-foreground">{subtitle}</p>
+    </div>
+  );
+}
 
 export default Index;
