@@ -18,8 +18,8 @@ export function WhitepaperButton() {
       className="h-8 gap-1.5 bg-primary text-primary-foreground shadow-elev-sm hover:bg-primary/90"
     >
       <Download className="h-3.5 w-3.5" />
-      <span className="hidden lg:inline">Download Full Whitepaper</span>
-      <span className="lg:hidden">Whitepaper</span>
+      <span className="hidden md:inline">Download Research</span>
+      <span className="md:hidden">Report</span>
     </Button>
   );
 }
