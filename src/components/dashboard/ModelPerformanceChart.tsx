@@ -57,7 +57,7 @@ export function ModelPerformanceChart() {
               <YAxis
                 tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 11 }}
                 stroke="hsl(var(--border))"
-                domain={[0, 0.45]}
+                domain={[0, 0.5]}
               />
               <Tooltip
                 cursor={{ fill: "hsl(var(--muted))", opacity: 0.4 }}

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Bell, FlaskConical, Github, Search } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
@@ -30,6 +31,13 @@ const SECTION_TITLES: Record<SectionId, string> = {
 const Index = () => {
   const [searchParams] = useSearchParams();
   const section = (searchParams.get("section") as SectionId) || "overview";
+
+  // Reset scroll to top whenever the active section changes.
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    const main = document.querySelector("main");
+    if (main) main.scrollTop = 0;
+  }, [section]);
 
   return (
     <StationProvider>
@@ -78,26 +86,21 @@ const Index = () => {
               </div>
             </header>
 
-            <main className="flex-1 space-y-6 p-4 sm:p-6 lg:p-8">
-              {section === "overview" && <HeroHeader />}
-
-              {/* Global headline summary visible on every section */}
-              <section aria-labelledby="impact-heading" className="space-y-3">
-                <div className="flex items-end justify-between">
-                  <div>
-                    <h2 id="impact-heading" className="font-display text-lg font-semibold">
-                      Headline Findings
-                    </h2>
-                    <p className="text-xs text-muted-foreground">
-                      Quantified impact metrics under filtered westerly regimes.
-                    </p>
-                  </div>
-                </div>
-                <ImpactCards />
-              </section>
-
+            <main key={section} className="flex-1 space-y-6 p-4 sm:p-6 lg:p-8">
               {section === "overview" && (
                 <>
+                  <HeroHeader />
+                  <section aria-labelledby="impact-heading" className="space-y-3">
+                    <div>
+                      <h2 id="impact-heading" className="font-display text-lg font-semibold">
+                        Headline Findings
+                      </h2>
+                      <p className="text-xs text-muted-foreground">
+                        Quantified impact metrics under filtered westerly regimes.
+                      </p>
+                    </div>
+                    <ImpactCards />
+                  </section>
                   <section className="grid gap-4 sm:gap-6 xl:grid-cols-2">
                     <WindRoseChart />
                     <ForecastChart />
@@ -106,8 +109,6 @@ const Index = () => {
                     <ModelPerformanceChart />
                     <FeatureImportanceChart />
                   </section>
-                  <section><MethodologySection /></section>
-                  <AbstractSection />
                 </>
               )}
 
@@ -138,7 +139,7 @@ const Index = () => {
                 <section className="space-y-4">
                   <SectionHeader
                     title="Model Performance Comparison"
-                    subtitle="Out-of-sample R² across Linear Regression, Random Forest, and XGBoost."
+                    subtitle="Linear Reg. (R²=0.218 · RMSE 9.4) · Random Forest (R²=0.314 · RMSE 8.1) · XGBoost (R²=0.361 · RMSE 7.6 ppb)."
                   />
                   <div className="grid gap-4 sm:gap-6 lg:grid-cols-[1fr_1.4fr]">
                     <ModelPerformanceChart />
@@ -166,15 +167,6 @@ const Index = () => {
                   <AbstractSection />
                 </section>
               )}
-
-              {/* Methodology note */}
-              <div className="flex items-start gap-2.5 rounded-lg border border-dashed border-border bg-muted/30 px-4 py-3">
-                <FlaskConical className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent" />
-                <p className="text-[11px] leading-relaxed text-muted-foreground">
-                  <span className="font-semibold text-foreground">Methodology Note —</span>{" "}
-                  Data processed using KNN-Imputation and validated through non-parametric Welch's t-tests.
-                </p>
-              </div>
 
               <footer className="flex flex-wrap items-center justify-between gap-2 border-t border-border pt-4 text-[11px] text-muted-foreground">
                 <span>© 2026 Sharon-Carmel Municipal Environmental Association · Atmos Research Group</span>
