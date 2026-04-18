@@ -47,7 +47,7 @@ const PIPELINE: {
   },
   {
     icon: Brain,
-    title: "Multi-Model Benchmarking & Selection",
+    title: "Comparative Model Evaluation",
     detail:
       "Comparative analysis across four distinct architectures: Linear Regression, Neural Networks (NN), Random Forest, and XGBoost. This stage evaluated linear vs. non-linear relationships to ensure maximum predictive accuracy.",
     tag: "Step 4",
