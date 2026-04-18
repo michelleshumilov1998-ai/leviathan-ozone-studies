@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 
 export function WhitepaperButton() {
   const handleDownload = () => {
-    toast.info("Whitepaper Under Review", {
+    toast.info("Publication in Progress", {
       description:
-        "The full research paper is under review. Please connect on LinkedIn for the pre-print.",
-      duration: 6000,
+        "The comprehensive technical report is currently under peer-review. To request a full pre-print version, please reach out via LinkedIn.",
+      duration: 7000,
     });
   };
 
@@ -18,7 +18,7 @@ export function WhitepaperButton() {
       className="h-8 gap-1.5 bg-primary text-primary-foreground shadow-elev-sm hover:bg-primary/90"
     >
       <Download className="h-3.5 w-3.5" />
-      <span className="hidden md:inline">Download Research</span>
+      <span className="hidden md:inline">Full Research Report</span>
       <span className="md:hidden">Report</span>
     </Button>
   );
