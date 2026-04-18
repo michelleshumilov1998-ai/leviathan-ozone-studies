@@ -14,6 +14,7 @@ import { ModelPerformanceChart } from "@/components/dashboard/ModelPerformanceCh
 import { FeatureImportanceChart } from "@/components/dashboard/FeatureImportanceChart";
 import { MethodologySection } from "@/components/dashboard/MethodologySection";
 import { AbstractSection } from "@/components/dashboard/AbstractSection";
+import { ResearchJourneySection } from "@/components/dashboard/ResearchJourneySection";
 import { StationProvider } from "@/components/dashboard/StationContext";
 import { StationSelector } from "@/components/dashboard/StationSelector";
 import { ThemeToggle } from "@/components/dashboard/ThemeToggle";
@@ -25,6 +26,7 @@ const SECTION_TITLES: Record<SectionId, string> = {
   forecast: "Forecast vs Actual",
   models: "Model Performance",
   methodology: "Methodology",
+  journey: "Research Journey",
   abstract: "Scientific Abstract",
 };
 
@@ -155,6 +157,16 @@ const Index = () => {
                     subtitle="KNN-Imputation pipeline and stable westerly wind filtering."
                   />
                   <MethodologySection />
+                </section>
+              )}
+
+              {section === "journey" && (
+                <section className="space-y-4">
+                  <SectionHeader
+                    title="Research Journey"
+                    subtitle="The how and why behind the project — from raw signal to attributable impact."
+                  />
+                  <ResearchJourneySection />
                 </section>
               )}
 
