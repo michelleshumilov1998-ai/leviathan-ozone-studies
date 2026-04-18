@@ -160,6 +160,16 @@ const Index = () => {
                 </section>
               )}
 
+              {section === "journey" && (
+                <section className="space-y-4">
+                  <SectionHeader
+                    title="Research Journey"
+                    subtitle="The how and why behind the project — from raw signal to attributable impact."
+                  />
+                  <ResearchJourneySection />
+                </section>
+              )}
+
               {section === "abstract" && (
                 <section className="space-y-4">
                   <SectionHeader
