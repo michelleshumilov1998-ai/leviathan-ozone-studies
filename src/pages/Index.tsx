@@ -76,7 +76,7 @@ const Index = () => {
                   className="hidden h-8 w-8 text-muted-foreground hover:text-foreground sm:inline-flex"
                 >
                   <a
-                    href="https://github.com"
+                    href="https://github.com/michelleshumilov1998-ai"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="View source code on GitHub"
@@ -91,7 +91,7 @@ const Index = () => {
                   className="hidden h-8 w-8 text-muted-foreground hover:text-foreground sm:inline-flex"
                 >
                   <a
-                    href="https://www.linkedin.com/in/michelle-shumilov"
+                    href="https://www.google.com/search?q=https://www.linkedin.com/in/michelle-shumilov"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Connect with Michelle Shumilov on LinkedIn"
