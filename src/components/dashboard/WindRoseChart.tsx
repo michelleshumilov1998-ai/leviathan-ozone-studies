@@ -10,7 +10,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ChartActions } from "./ChartActions";
-import { useStation } from "./StationContext";
+import { STATIONS, useStation, type StationId } from "./StationContext";
 
 const base = [
   { sector: "N", baseline: 18, observed: 22 },
@@ -23,8 +23,11 @@ const base = [
   { sector: "NW", baseline: 25, observed: 34 },
 ];
 
-export function WindRoseChart() {
-  const { station } = useStation();
+export function WindRoseChart({ stationOverride }: { stationOverride?: StationId } = {}) {
+  const { station: ctxStation } = useStation();
+  const station = stationOverride
+    ? STATIONS.find((s) => s.id === stationOverride) ?? ctxStation
+    : ctxStation;
   const data = base.map((d) => ({
     sector: d.sector,
     baseline: Math.round(d.baseline * station.factor),
@@ -36,7 +39,7 @@ export function WindRoseChart() {
       <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
         <div>
           <CardTitle className="font-display text-base">
-            Spatial Sector Analysis: O₃ Transport
+            O₃ Transport — {station.name}
           </CardTitle>
           <CardDescription className="mt-1 text-xs">
             Mean O₃ (ppb) per 45° wind sector — baseline vs. observed
