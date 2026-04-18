@@ -11,8 +11,10 @@ import {
 } from "recharts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ChartActions } from "./ChartActions";
+import { useStation } from "./StationContext";
 
-const data = [
+const base = [
   { t: "00:00", actual: 32, predicted: 30, lo: 26, hi: 34 },
   { t: "02:00", actual: 28, predicted: 27, lo: 23, hi: 31 },
   { t: "04:00", actual: 25, predicted: 26, lo: 22, hi: 30 },
@@ -28,6 +30,16 @@ const data = [
 ];
 
 export function ForecastChart() {
+  const { station } = useStation();
+  const f = station.factor;
+  const data = base.map((d) => ({
+    t: d.t,
+    actual: Math.round(d.actual * f),
+    predicted: Math.round(d.predicted * f),
+    lo: Math.round(d.lo * f),
+    hi: Math.round(d.hi * f),
+  }));
+
   return (
     <Card className="border-border bg-gradient-card shadow-elev-sm">
       <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
@@ -39,9 +51,12 @@ export function ForecastChart() {
             Diurnal cycle, 24-hour mean — XGBoost forecast with 95% confidence band
           </CardDescription>
         </div>
-        <Badge variant="secondary" className="border border-border text-[10px] uppercase tracking-wider">
-          Time Series
-        </Badge>
+        <div className="flex items-center gap-2">
+          <Badge variant="secondary" className="border border-border text-[10px] uppercase tracking-wider">
+            Time Series
+          </Badge>
+          <ChartActions />
+        </div>
       </CardHeader>
       <CardContent className="pt-2">
         <div className="h-[320px]">
@@ -80,45 +95,11 @@ export function ForecastChart() {
                 }}
                 labelStyle={{ color: "hsl(var(--foreground))", fontWeight: 600 }}
               />
-              <Legend
-                wrapperStyle={{ fontSize: "11px", paddingTop: "6px" }}
-                iconType="circle"
-              />
-              <Area
-                type="monotone"
-                dataKey="hi"
-                stroke="none"
-                fill="url(#bandFill)"
-                name="95% CI"
-                isAnimationActive={false}
-              />
-              <Area
-                type="monotone"
-                dataKey="lo"
-                stroke="none"
-                fill="hsl(var(--background))"
-                fillOpacity={1}
-                legendType="none"
-                isAnimationActive={false}
-              />
-              <Line
-                type="monotone"
-                dataKey="actual"
-                stroke="hsl(var(--chart-1))"
-                strokeWidth={2.25}
-                dot={{ r: 3, fill: "hsl(var(--chart-1))" }}
-                activeDot={{ r: 5 }}
-                name="Actual"
-              />
-              <Line
-                type="monotone"
-                dataKey="predicted"
-                stroke="hsl(var(--chart-2))"
-                strokeWidth={2.25}
-                strokeDasharray="5 4"
-                dot={false}
-                name="Predicted"
-              />
+              <Legend wrapperStyle={{ fontSize: "11px", paddingTop: "6px" }} iconType="circle" />
+              <Area type="monotone" dataKey="hi" stroke="none" fill="url(#bandFill)" name="95% CI" isAnimationActive={false} />
+              <Area type="monotone" dataKey="lo" stroke="none" fill="hsl(var(--background))" fillOpacity={1} legendType="none" isAnimationActive={false} />
+              <Line type="monotone" dataKey="actual" stroke="hsl(var(--chart-1))" strokeWidth={2.25} dot={{ r: 3, fill: "hsl(var(--chart-1))" }} activeDot={{ r: 5 }} name="Actual" />
+              <Line type="monotone" dataKey="predicted" stroke="hsl(var(--chart-2))" strokeWidth={2.25} strokeDasharray="5 4" dot={false} name="Predicted" />
             </ComposedChart>
           </ResponsiveContainer>
         </div>
