@@ -1,4 +1,6 @@
-import { Activity, BarChart3, Compass, FlaskConical, LayoutDashboard, LineChart, Settings, Wind } from "lucide-react";
+import { Activity, BarChart3, Compass, FlaskConical, LayoutDashboard, Leaf, LineChart, Settings, Wind } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { NavLink } from "@/components/NavLink";
 import {
   Sidebar,
   SidebarContent,
@@ -14,34 +16,46 @@ import {
 } from "@/components/ui/sidebar";
 
 const nav = [
-  { title: "Overview", icon: LayoutDashboard, key: "overview", active: true },
-  { title: "Spatial Analysis", icon: Compass, key: "spatial" },
-  { title: "Forecast vs Actual", icon: LineChart, key: "forecast" },
-  { title: "Model Performance", icon: BarChart3, key: "models" },
-  { title: "Wind Filtering", icon: Wind, key: "wind" },
-  { title: "Methodology", icon: FlaskConical, key: "methodology" },
+  { title: "Overview", icon: LayoutDashboard, url: "/" },
+  { title: "Spatial Analysis", icon: Compass, url: "/#spatial" },
+  { title: "Forecast vs Actual", icon: LineChart, url: "/#forecast" },
+  { title: "Model Performance", icon: BarChart3, url: "/#models" },
+  { title: "Wind Filtering", icon: Wind, url: "/#wind" },
+  { title: "Methodology", icon: FlaskConical, url: "/#methodology" },
 ];
 
 const system = [
-  { title: "Live Monitor", icon: Activity, key: "monitor" },
-  { title: "Settings", icon: Settings, key: "settings" },
+  { title: "Live Monitor", icon: Activity, url: "/live-monitor" },
+  { title: "Settings", icon: Settings, url: "/#settings" },
 ];
 
 export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
+  const location = useLocation();
+
+  const isActive = (url: string) => {
+    const path = url.split("#")[0] || "/";
+    if (path === "/" && url.includes("#")) return false;
+    return location.pathname === path;
+  };
 
   return (
     <Sidebar collapsible="icon" className="border-r border-sidebar-border">
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center gap-3 px-2 py-3">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-gradient-accent shadow-glow">
-            <Wind className="h-5 w-5 text-accent-foreground" />
+          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-accent shadow-glow">
+            <Leaf className="h-5 w-5 text-accent-foreground" strokeWidth={2.25} />
+            <span className="absolute -bottom-0.5 -right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-sidebar text-[8px] font-bold text-sidebar-foreground ring-2 ring-sidebar">
+              SC
+            </span>
           </div>
           {!collapsed && (
-            <div className="flex flex-col leading-tight">
+            <div className="flex min-w-0 flex-col leading-tight">
               <span className="font-display text-sm font-bold text-sidebar-foreground">Atmos Research</span>
-              <span className="text-[11px] text-sidebar-foreground/60">Ozone Impact Suite</span>
+              <span className="truncate text-[10px] text-sidebar-foreground/60">
+                Sharon-Carmel Municipal Env. Assoc.
+              </span>
             </div>
           )}
         </div>
@@ -55,14 +69,17 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {nav.map((item) => (
-                <SidebarMenuItem key={item.key}>
+                <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
-                    isActive={item.active}
+                    asChild
+                    isActive={isActive(item.url)}
                     tooltip={item.title}
                     className="data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
                   >
-                    <item.icon className="h-4 w-4" />
-                    <span>{item.title}</span>
+                    <NavLink to={item.url}>
+                      <item.icon className="h-4 w-4" />
+                      <span>{item.title}</span>
+                    </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -77,10 +94,17 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {system.map((item) => (
-                <SidebarMenuItem key={item.key}>
-                  <SidebarMenuButton tooltip={item.title} className="hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground">
-                    <item.icon className="h-4 w-4" />
-                    <span>{item.title}</span>
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={isActive(item.url)}
+                    tooltip={item.title}
+                    className="data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
+                  >
+                    <NavLink to={item.url}>
+                      <item.icon className="h-4 w-4" />
+                      <span>{item.title}</span>
+                    </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
