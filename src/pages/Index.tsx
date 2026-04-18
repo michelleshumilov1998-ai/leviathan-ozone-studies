@@ -11,6 +11,7 @@ import { ForecastChart } from "@/components/dashboard/ForecastChart";
 import { ModelPerformanceChart } from "@/components/dashboard/ModelPerformanceChart";
 import { FeatureImportanceChart } from "@/components/dashboard/FeatureImportanceChart";
 import { MethodologySection } from "@/components/dashboard/MethodologySection";
+import { AbstractSection } from "@/components/dashboard/AbstractSection";
 import { StationProvider } from "@/components/dashboard/StationContext";
 import { StationSelector } from "@/components/dashboard/StationSelector";
 import { ThemeToggle } from "@/components/dashboard/ThemeToggle";
@@ -92,6 +93,8 @@ const Index = () => {
               <section>
                 <MethodologySection />
               </section>
+
+              <AbstractSection />
 
               {/* Methodology note */}
               <div className="flex items-start gap-2.5 rounded-lg border border-dashed border-border bg-muted/30 px-4 py-3">
