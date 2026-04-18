@@ -79,12 +79,12 @@ const Index = () => {
                 <ImpactCards />
               </section>
 
-              <section className="grid gap-6 xl:grid-cols-2">
+              <section className="grid gap-4 sm:gap-6 xl:grid-cols-2">
                 <WindRoseChart />
                 <ForecastChart />
               </section>
 
-              <section className="grid gap-6 lg:grid-cols-[1fr_1.4fr]">
+              <section className="grid gap-4 sm:gap-6 lg:grid-cols-[1fr_1.4fr]">
                 <ModelPerformanceChart />
                 <FeatureImportanceChart />
               </section>

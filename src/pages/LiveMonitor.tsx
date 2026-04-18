@@ -19,6 +19,7 @@ import { AppSidebar } from "@/components/dashboard/AppSidebar";
 import { StationProvider, useStation } from "@/components/dashboard/StationContext";
 import { StationSelector } from "@/components/dashboard/StationSelector";
 import { ChartActions } from "@/components/dashboard/ChartActions";
+import { ThemeToggle } from "@/components/dashboard/ThemeToggle";
 
 const WINDOW = 40;
 
