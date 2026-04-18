@@ -47,8 +47,9 @@ const PIPELINE: {
   },
   {
     icon: Brain,
-    title: "XGBoost Modeling",
-    detail: "Gradient-boosted regressor benchmarked against linear & RF baselines.",
+    title: "Multi-Model Benchmarking & Selection",
+    detail:
+      "Comparative analysis across four distinct architectures: Linear Regression, Neural Networks (NN), Random Forest, and XGBoost. This stage evaluated linear vs. non-linear relationships to ensure maximum predictive accuracy.",
     tag: "Step 4",
   },
 ];

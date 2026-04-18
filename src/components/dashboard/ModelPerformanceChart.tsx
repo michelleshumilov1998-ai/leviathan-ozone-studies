@@ -88,16 +88,40 @@ export function ModelPerformanceChart() {
         </div>
 
         <div className="mt-3 grid grid-cols-2 gap-2 border-t border-border pt-3 text-[11px] sm:grid-cols-4">
-          {data.map((d) => (
-            <div key={d.model} className="rounded-md bg-muted/40 px-2 py-1.5">
-              <div className="flex items-center justify-between gap-1">
-                <p className="font-medium text-foreground">{d.model}</p>
-                <span className="text-[9px] uppercase tracking-wider text-muted-foreground">{d.note}</span>
+          {data.map((d) => {
+            const isChampion = d.model === "XGBoost";
+            return (
+              <div
+                key={d.model}
+                className={`rounded-md px-2 py-1.5 ${
+                  isChampion
+                    ? "border border-accent/40 bg-accent/10 ring-1 ring-accent/20"
+                    : "bg-muted/40"
+                }`}
+              >
+                <div className="flex items-center justify-between gap-1">
+                  <p className="font-medium text-foreground">{d.model}</p>
+                  <span
+                    className={`text-[9px] uppercase tracking-wider ${
+                      isChampion ? "font-semibold text-accent" : "text-muted-foreground"
+                    }`}
+                  >
+                    {isChampion ? "★ Champion" : d.note}
+                  </span>
+                </div>
+                <p className="text-mono-num text-muted-foreground">RMSE {d.rmse} ppb</p>
               </div>
-              <p className="text-mono-num text-muted-foreground">RMSE {d.rmse} ppb</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
+
+        <p className="mt-3 rounded-md border border-dashed border-border bg-muted/30 px-3 py-2 text-[11px] leading-relaxed text-muted-foreground">
+          <span className="font-semibold text-foreground">Selection note —</span> While Neural Networks and
+          Random Forest showed strong performance, <span className="font-semibold text-foreground">XGBoost</span>{" "}
+          was selected as the final production model due to its superior RMSE (
+          <span className="text-mono-num font-semibold text-foreground">7.6 ppb</span>) and feature
+          interpretability.
+        </p>
       </CardContent>
     </Card>
   );
