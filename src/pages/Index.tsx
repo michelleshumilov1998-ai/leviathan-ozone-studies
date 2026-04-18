@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Bell, Github, Search } from "lucide-react";
+import { Github, Linkedin, Search } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
@@ -71,20 +71,36 @@ const Index = () => {
                 <StationSelector />
                 <Button
                   asChild
-                  variant="outline"
-                  size="sm"
-                  className="hidden h-8 gap-1.5 text-xs sm:inline-flex"
+                  variant="ghost"
+                  size="icon"
+                  className="hidden h-8 w-8 text-muted-foreground hover:text-foreground sm:inline-flex"
                 >
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub">
-                    <Github className="h-3.5 w-3.5" />
-                    <span className="hidden lg:inline">View Source Code</span>
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View source code on GitHub"
+                  >
+                    <Github className="h-4 w-4" />
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  variant="ghost"
+                  size="icon"
+                  className="hidden h-8 w-8 text-muted-foreground hover:text-foreground sm:inline-flex"
+                >
+                  <a
+                    href="https://www.linkedin.com/in/michelle-shumilov"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Connect with Michelle Shumilov on LinkedIn"
+                  >
+                    <Linkedin className="h-4 w-4" />
                   </a>
                 </Button>
                 <WhitepaperButton />
                 <ThemeToggle />
-                <Button variant="ghost" size="icon" className="hidden h-8 w-8 text-muted-foreground sm:inline-flex">
-                  <Bell className="h-4 w-4" />
-                </Button>
               </div>
             </header>
 

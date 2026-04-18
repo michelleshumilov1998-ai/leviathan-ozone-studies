@@ -45,7 +45,7 @@ export function ForecastChart() {
       <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
         <div>
           <CardTitle className="font-display text-base">
-            Predicted O₃ Levels vs. Actual Observations
+            Predicted vs. Actual O₃ — {station.name}
           </CardTitle>
           <CardDescription className="mt-1 text-xs">
             Diurnal cycle, 24-hour mean — XGBoost forecast with 95% confidence band
