@@ -35,12 +35,17 @@ export function MethodologySection() {
               significance testing presented across this dashboard.
             </p>
 
-            <figure className="mt-5 border-l-2 border-accent/60 pl-4">
+            <figure className="mt-5 space-y-3 border-l-2 border-accent/60 pl-4">
               <blockquote className="font-display text-[13px] italic leading-relaxed text-foreground/85">
                 "This research was conducted and finalized alongside active combat reserve service,
                 demonstrating resilience and rigorous time management."
               </blockquote>
-              <figcaption className="mt-1.5 text-[10px] uppercase tracking-wider text-muted-foreground">
+              <p className="text-[12px] leading-relaxed text-foreground/80">
+                Research conducted by <span className="font-semibold text-foreground">Michelle Shumilov</span>,
+                CS Student at Ruppin Academic Center
+                <span className="text-muted-foreground"> (Excellence Scholarship · Year 1 GPA: 94)</span>.
+              </p>
+              <figcaption className="text-[10px] uppercase tracking-wider text-muted-foreground">
                 — Author's note
               </figcaption>
             </figure>
